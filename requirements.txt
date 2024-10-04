@@ -1,0 +1,12 @@
+pymupdf
+playwright
+ipykernel
+bs4
+pillow
+matplotlib
+pymongo
+aiohttp
+aiofiles
+ultralytics
+imagededup
+# conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
