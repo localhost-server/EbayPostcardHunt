@@ -10,3 +10,5 @@ def checkFolders():
             print(f"{folder} folder created")
         else:
             print(f"{folder} folder already exists")
+
+checkFolders()
