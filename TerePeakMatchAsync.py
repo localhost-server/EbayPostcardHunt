@@ -16,7 +16,7 @@ from imagededup.utils.models import MobilenetV3
 from playwright.async_api import async_playwright
 
 # Load cookies from the text file
-with open('cookies0.txt', 'r') as file:
+with open('Authcookies.txt', 'r') as file:
     cookies = json.load(file)
 
 # Defining Functions
