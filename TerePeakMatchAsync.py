@@ -47,7 +47,7 @@ async def runResearching(cookies):
 
         page = await context.new_page()
         await open_browser(page)
-        time.sleep(120)
+        time.sleep(10)
         if await page.is_visible('text=Sign in'):
             await page.click("text=Sign in")
 
