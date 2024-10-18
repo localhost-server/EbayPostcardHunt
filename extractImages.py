@@ -1,58 +1,53 @@
-import fitz  # PyMuPDF
 import os
 import subprocess
-from PIL import Image
+import shutil
 
-def correct_orientation(image_path):
-    # Open the image
-    with Image.open(image_path) as img:
-        # Manually rotate the image if needed (180 degrees for upside-down images)
-        rotated_img = img.rotate(180, expand=True)
-        rotated_img.save(image_path)
-
-def extract_images_from_pdf(pdf_path, output_folder):
-    # Open the PDF file
-    pdf_document = fitz.open(pdf_path)
-    
+def extract_images_using_pdftohtml(pdf_path, output_folder):
     # Ensure the output folder exists
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     
-    # Iterate through each page
-    for page_num in range(len(pdf_document)):
-        page = pdf_document.load_page(page_num)
-        images = page.get_images(full=True)
-        
-        for img_index, img in enumerate(images):
-            xref = img[0]
-            base_image = pdf_document.extract_image(xref)
-            image_bytes = base_image["image"]
-            image_ext = base_image["ext"]
-            image_filename = f"page_{page_num + 1}_img_{img_index + 1}.{image_ext}"
-            image_path = os.path.join(output_folder, image_filename)
-            
-            # Save the image
-            with open(image_path, "wb") as image_file:
-                image_file.write(image_bytes)
-            
-            # Correct orientation if needed
-            correct_orientation(image_path)
+    # Extract images using pdftohtml
+    for pdf_file in os.listdir(pdf_path):
+        if pdf_file.endswith(".pdf") or pdf_file.endswith(".PDF"):
+            full_pdf_path = os.path.join(pdf_path, pdf_file)
+            # Run the pdftohtml command to extract images
+            subprocess.run(["pdftohtml", "-c", "-hidden", "-nodrm", full_pdf_path, output_folder])
     
     print(f"Images extracted to {output_folder}")
 
+def clean_output_folder(output_folder):
+    # Remove all non-image files from the output folder
+    allowed_extensions = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".svg"}
+    
+    for filename in os.listdir(output_folder):
+        file_path = os.path.join(output_folder, filename)
+        # Check file extension
+        if not any(filename.lower().endswith(ext) for ext in allowed_extensions):
+            try:
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)  # Remove directories if any exist
+            except Exception as e:
+                print(f"Error deleting file {file_path}: {e}")
+
 # Example usage
 pdf_path = "pdfs"
-output_folder = "pdf_imgs"
+output_folder = "pdf_imgs/"
+
+# Step 1: Clear the output folder
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
-# cleaning the output folder
 for f in os.listdir(output_folder):
     os.remove(os.path.join(output_folder, f))
 
-pdfs = [f for f in os.listdir(pdf_path) if f.endswith(".pdf") or f.endswith(".PDF")]
-for i in pdfs:
-    location = os.path.join(pdf_path, i)
-    extract_images_from_pdf(location, output_folder)
+# Step 2: Extract images using pdftohtml
+extract_images_using_pdftohtml(pdf_path, output_folder)
 
+# Step 3: Clean the output folder and remove non-image files
+clean_output_folder(output_folder)
+
+# Step 4: Resize images using the existing resize script
 print("Resizing images...")
 subprocess.run(["python", "resizePdfImg.py"])
