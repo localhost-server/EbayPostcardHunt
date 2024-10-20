@@ -13,7 +13,7 @@ def extract_images_using_pdftohtml(pdf_path, output_folder):
         if pdf_file.endswith(".pdf") or pdf_file.endswith(".PDF"):
             full_pdf_path = os.path.join(pdf_path, pdf_file)
             # Create a temporary folder to extract images for each PDF
-            temp_folder = os.path.join(output_folder, f'{pdf_file.split(".")[0]}{time()}')
+            temp_folder = os.path.join(output_folder, f'{pdf_file.split(".")[0]}{int(time())}')
             if not os.path.exists(temp_folder):
                 os.makedirs(temp_folder)
 
