@@ -73,7 +73,7 @@ async def runResearching(cookies):
         col = db['ebay']
         cur = col.find({"MaxSoldPrice": {"$exists": False},"Matches":{"$ne":"No matches found"},"Matches": { "$exists": True }})
         cur = [i for i in cur]
-
+        print(f"Total search count {len(cur)}")
         for obj in cur:
             print(obj)
             match = obj['Matches']
