@@ -71,6 +71,7 @@ async def runResearching(cookies):
         connection = pymongo.MongoClient('localhost', 27017)
         db = connection['ebay']
         col = db['ebay']
+        col.delete_many({"Matches":"No matches found"})
         cur = col.find({"MaxSoldPrice": {"$exists": False},"Matches":{"$ne":"No matches found"},"Matches": { "$exists": True }})
         cur = [i for i in cur]
         print(f"Total search count {len(cur)}")
