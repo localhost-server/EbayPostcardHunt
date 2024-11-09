@@ -78,6 +78,8 @@ async def runResearching(cookies):
             print(obj)
             match = obj['Matches']
             nomatch = obj['Matches']
+            print(len(match))
+            print(len(nomatch))
             if len(match) == 0:
                 continue
             prices = []
