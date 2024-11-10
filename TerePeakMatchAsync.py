@@ -41,7 +41,7 @@ async def runResearching(cookies):
             if cookie.get("sameSite") is None:
                 cookie["sameSite"] = "Lax"
 
-        browser = await p.chromium.launch(headless=False)
+        browser = await p.chromium.launch_persistent_context("",headless=False)
         context = await browser.new_context()
         await context.add_cookies(cookies)
 
