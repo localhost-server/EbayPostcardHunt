@@ -5,6 +5,7 @@ from PIL import Image
 from bs4 import BeautifulSoup as bs
 import requests
 import matplotlib.pyplot as plt
+import random
 import shutil
 import json
 from concurrent.futures import ThreadPoolExecutor
