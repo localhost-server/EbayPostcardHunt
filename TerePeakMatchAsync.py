@@ -50,11 +50,11 @@ async def runResearching(cookies):
             proxy = f'isp.oxylabs.io:800{num}'
         else:
             proxy = f'isp.oxylabs.io:80{num}'
-    
+        proxy="brd.superproxy.io:22225"
         browser = await p.chromium.launch_persistent_context('',args=args, headless=False,proxy={
                 "server": proxy,
-                "username": "iaaicopart_G6O9n",
-                "password": "Demand=78966"
+                "username": "brd-customer-hl_d8e30669-zone-datacenter_proxy1",
+                "password": "9mks7jyv70n1"
                 })
         context = browser #await browser.new_context()
         await context.add_cookies(cookies)
