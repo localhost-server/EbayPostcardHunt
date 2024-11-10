@@ -41,7 +41,7 @@ async def runResearching(cookies):
             if cookie.get("sameSite") is None:
                 cookie["sameSite"] = "Lax"
 
-         args = ["--disable-blink-features=AutomationControlled"]
+        args = ["--disable-blink-features=AutomationControlled"]
         username = os.getenv("OxylabUser")
         passwd = os.getenv("OxylabPass")
         num=random.randint(1,21)
