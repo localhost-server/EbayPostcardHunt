@@ -41,7 +41,20 @@ async def runResearching(cookies):
             if cookie.get("sameSite") is None:
                 cookie["sameSite"] = "Lax"
 
-        browser = await p.firefox.launch_persistent_context("",headless=False)
+         args = ["--disable-blink-features=AutomationControlled"]
+        username = os.getenv("OxylabUser")
+        passwd = os.getenv("OxylabPass")
+        num=random.randint(1,21)
+        if num<10:
+            proxy = f'isp.oxylabs.io:800{num}'
+        else:
+            proxy = f'isp.oxylabs.io:80{num}'
+    
+        browser = await p.firefox.chromium.launch_persistent_context('',args=args, headless=False,proxy={
+                "server": proxy,
+                "username": "iaaicopart_G6O9n",
+                "password": "Demand=78966"
+                })
         context = browser #await browser.new_context()
         await context.add_cookies(cookies)
 
