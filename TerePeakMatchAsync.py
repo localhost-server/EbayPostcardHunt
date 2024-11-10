@@ -51,7 +51,7 @@ async def runResearching(cookies):
         else:
             proxy = f'isp.oxylabs.io:80{num}'
     
-        browser = await p.firefox.chromium.launch_persistent_context('',args=args, headless=False,proxy={
+        browser = await p.chromium.launch_persistent_context('',args=args, headless=False,proxy={
                 "server": proxy,
                 "username": "iaaicopart_G6O9n",
                 "password": "Demand=78966"
