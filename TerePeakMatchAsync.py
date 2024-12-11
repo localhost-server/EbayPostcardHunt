@@ -66,7 +66,7 @@ async def runResearching(cookies):
         context = browser #await browser.new_context()
         await context.add_cookies(cookies)
 
-        page = await context.new_page()
+        page = context.pages[0] #await context.new_page()
         await open_browser(page)
         time.sleep(10)
         if await page.is_visible('text=Sign in'):
