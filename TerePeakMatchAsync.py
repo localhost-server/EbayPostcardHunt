@@ -109,6 +109,7 @@ async def runResearching(cookies):
             imgPrice = {}
             noimgPrice = {}
             for j in match:
+                time.sleep(random.randint(10, 20))
                 print(j)
                 id = j.split('.')[0]
                 file = f'mached/{id}.html'
