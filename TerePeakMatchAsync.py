@@ -120,7 +120,7 @@ async def runResearching(cookies):
                 soup = bs(content, 'html.parser')
                 h1 = soup.find('h1')
                 text = h1.text
-                queryLists = [' '.join(text.split(' ')[:i]) for i in range(4, len(text.split(' ')) + 1, 3)]
+                queryLists = [' '.join(text.split(' ')[:i]) for i in range(4, len(text.split(' ')) + 1, 4)]
                 plt.imshow(plt.imread(f'mached/{id}.jpg'))
                 print(queryLists)
                 for qry in queryLists:
