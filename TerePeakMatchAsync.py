@@ -15,10 +15,16 @@ from imagededup.methods import CNN
 from imagededup.utils import CustomModel
 from imagededup.utils.models import MobilenetV3
 from playwright.async_api import async_playwright
+import os
+
+cookieFol=os.listdir("cookies")
+cookiefile=random.choice(cookieFol)
+with open(f'cookies/{cookiefile}', 'r') as file:
+    cookies = json.load(file)
 
 # Load cookies from the text file
-with open('Authcookies.txt', 'r') as file:
-    cookies = json.load(file)
+# with open('Authcookies.txt', 'r') as file:
+#     cookies = json.load(file)
 
 # Defining Functions
 async def open_browser(page):
@@ -79,7 +85,7 @@ async def runResearching(cookies):
 
         # saving the cookies to file
         cookies = await context.cookies()
-        with open('Authcookies.txt', 'w') as file:
+        with open(f'cookies/{cookiefile}', 'w') as file:
             json.dump(cookies, file)
 
         connection = pymongo.MongoClient('localhost', 27017)
