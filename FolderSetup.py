@@ -1,6 +1,6 @@
 import os
 
-reqFolders=['down_imgs','htmls','TrPeak','TrPeakmached','mached','pdf_imgs','pdfs','re_imgs']
+reqFolders=['down_imgs','htmls','TrPeak','TrPeakmached','mached','pdf_imgs','pdfs','re_imgs','cookies']
 
 # checking if all folders exist or not
 def checkFolders():
