@@ -97,6 +97,7 @@ async def runResearching(cookies):
         cur = [i for i in cur]
         print(f"Total search count {len(cur)}")
         for obj in cur:
+            time.sleep(random.randint(7, 15))
             print(obj)
             match = obj['Matches']
             nomatch = obj['Matches']
