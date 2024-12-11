@@ -19,6 +19,7 @@ import os
 
 cookieFol=os.listdir("cookies")
 cookiefile=random.choice(cookieFol)
+print(cookiefile)
 with open(f'cookies/{cookiefile}', 'r') as file:
     cookies = json.load(file)
 
