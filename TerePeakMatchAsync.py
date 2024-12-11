@@ -98,7 +98,7 @@ async def runResearching(cookies):
         cur = [i for i in cur]
         print(f"Total search count {len(cur)}")
         for obj in cur:
-            time.sleep(random.randint(5, 10))
+            time.sleep(random.randint(7, 12))
             print(obj)
             match = obj['Matches']
             nomatch = obj['Matches']
@@ -112,7 +112,7 @@ async def runResearching(cookies):
             imgPrice = {}
             noimgPrice = {}
             for j in match:
-                time.sleep(random.randint(5, 10))
+                time.sleep(random.randint(7, 12))
                 print(j)
                 id = j.split('.')[0]
                 file = f'mached/{id}.html'
